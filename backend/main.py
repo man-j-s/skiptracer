@@ -4,10 +4,12 @@ from backend.models.user import User
 from backend.models.search import Search #use name of class, not table
 from backend.models.result import Result #shows the search results
 from backend.models.email import Email
+from backend.routes.auth import router as auth_router
 
 
 app = FastAPI()
 Base.metadata.create_all(bind = engine)
+app.include_router(auth_router)
 
 # ***************************************************
 # ** IMPORTANT COMMANDS **
