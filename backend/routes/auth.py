@@ -35,5 +35,9 @@ def login(request: LoginRequest):
         raise HTTPException(status_code = 404, detail = "User not found")
     if not pwd_context.verify(request.password, user.password):
         raise HTTPException(status_code = 401, detail = "Incorrect password")
+    token_data = {"sub": user.email}
+    token = jwt.encode(token_data, SECRET_KEY, algorithm = "HS256")
+    return{"access_token": token, "token_type": "bearer"}
+
 
 
