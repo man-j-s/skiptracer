@@ -1,13 +1,15 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from backend.database import SessionLocal
 from backend.models.user import User
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from jose import jwt
 from backend.config import SECRET_KEY
+from fastapi.security import OAuth2PasswordBearer
 
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__truncate_error=False)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl = "login")
 
 class RegisterRequest(BaseModel):
     name: str
@@ -39,5 +41,5 @@ def login(request: LoginRequest):
     token = jwt.encode(token_data, SECRET_KEY, algorithm = "HS256")
     return{"access_token": token, "token_type": "bearer"}
 
-
-
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    
