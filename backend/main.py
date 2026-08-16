@@ -27,4 +27,11 @@ app.include_router(auth_router)
 
 # Exit PostgreSQL:
 # \q
+
+# TEST USER 
+# {
+#   "name": "Test User 2",
+#   "email": "test2@test.com",
+#   "password": "test123"
+# }
 # ****************************************************
