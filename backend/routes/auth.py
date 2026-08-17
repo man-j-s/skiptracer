@@ -1,3 +1,7 @@
+#############################################
+## Contains code related to Authentication. ##
+#############################################
+
 from fastapi import APIRouter, HTTPException, Depends
 from backend.database import SessionLocal
 from backend.models.user import User
@@ -17,6 +21,7 @@ class RegisterRequest(BaseModel):
     password: str
 
 @router.post("/register")
+
 def register(request: RegisterRequest):
     db = SessionLocal()
     hashed_password = pwd_context.hash(request.password)
@@ -29,7 +34,7 @@ class LoginRequest(BaseModel):
     email: str
     password: str
 
-@router.post("/login")
+@router.post("/login") #DECORATOR as well as way to show that this is a ROUTE
 def login(request: LoginRequest):
     db = SessionLocal()
     user = db.query(User).filter(User.email == request.email).first()
@@ -52,3 +57,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     if not user:
         raise HTTPException(status_code = 401, detail = "Invalid token")
     return user
+
+@router.get("/me")
+def me(user_verify : User = Depends(get_current_user)):
+    return{"name" : user_verify.name, "email" : user_verify.email} #DOT . is how to reach object to pull specific info from it.
