@@ -42,4 +42,13 @@ def login(request: LoginRequest):
     return{"access_token": token, "token_type": "bearer"}
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
-    
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+    except:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    email = payload.get("sub")
+    db = SessionLocal()
+    user = db.query(User).filter(User.email == email).first()
+    if not user:
+        raise HTTPException(status_code = 401, detail = "Invalid token")
+    return user

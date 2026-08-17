@@ -34,4 +34,10 @@ app.include_router(auth_router)
 #   "email": "test2@test.com",
 #   "password": "test123"
 # }
+# TEST USER After TOKEN 
+# {
+#   "name": "Test User 3",
+#   "email": "test3@testmail.com",
+#   "password": "password123"
+# }
 # ****************************************************
