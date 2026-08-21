@@ -41,4 +41,6 @@ app.include_router(search_router)
 #   "email": "test3@testmail.com",
 #   "password": "password123"
 # }
+# curl.exe -X POST -H "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0M0B0ZXN0bWFpbC5jb20ifQ.FhIuI5SyhI7bno9LfYCn3ijFjrd6A6gRuyj-zIsVE_M" -H "Content-Type: application/json" -d "{\"name\":\"John Smith\",\"city\":\"Toronto\",\"province\":\"Ontario\"}" http://127.0.0.1:8000/search
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0M0B0ZXN0bWFpbC5jb20ifQ.FhIuI5SyhI7bno9LfYCn3ijFjrd6A6gRuyj-zIsVE_M
 # ****************************************************
