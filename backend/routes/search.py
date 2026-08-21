@@ -19,5 +19,5 @@ class SearchDebtor(BaseModel):
     email : Optional[str] = None
 
 @router.post("/search")
-def search(request : SearchDebtor, user_verify : User = Depends(get_current_user)):
+def search(request : SearchDebtor, usSer_verify : User = Depends(get_current_user)):
     return{"name" : request.name,  "city":request.city, "user": user_verify.email }
