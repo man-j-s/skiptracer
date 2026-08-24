@@ -7,6 +7,8 @@ from typing import Optional
 from fastapi import Depends, APIRouter
 from backend.routes.auth import get_current_user
 from backend.models.user import User
+from backend.models.search import Search
+from backend.database import SessionLocal
 
 router = APIRouter()
 
@@ -21,3 +23,8 @@ class SearchDebtor(BaseModel):
 @router.post("/search")
 def search(request : SearchDebtor, user_verify : User = Depends(get_current_user)):
     return{"name" : request.name,  "city":request.city, "user": user_verify.email }
+
+def search(request : Search):
+    db.add()
+    db.commit()
+        
