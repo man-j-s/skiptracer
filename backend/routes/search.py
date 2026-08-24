@@ -22,9 +22,9 @@ class SearchDebtor(BaseModel):
 
 @router.post("/search")
 def search(request : SearchDebtor, user_verify : User = Depends(get_current_user)):
-    return{"name" : request.name,  "city":request.city, "user": user_verify.email }
-
-def search(request : Search):
-    db.add()
+    db = SessionLocal()
+    new_search = Search(user_id = user_verify.id, name = request.name, email = request.email, city = request.city, province = request.province, phone = request.phone, employer = request.employer)
+    db.add(new_search)
     db.commit()
-        
+    return{"search_id" : new_search.id, "name" : request.name,  "city":request.city, "user": user_verify.email }
+
