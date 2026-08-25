@@ -28,3 +28,9 @@ def search(request : SearchDebtor, user_verify : User = Depends(get_current_user
     db.commit()
     return{"search_id" : new_search.id, "name" : request.name,  "city":request.city, "user": user_verify.email }
 
+@router.get("/search/history")
+def search_history()
+    db.add()
+    db.commit()
+
+#SessionLocal() this is to start a db session. 
