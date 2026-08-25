@@ -25,8 +25,8 @@ class RegisterRequest(BaseModel):
 def register(request: RegisterRequest):
     db = SessionLocal()
     hashed_password = pwd_context.hash(request.password)
-    new_user = User(name=request.name, email=request.email, password=hashed_password)
-    db.add(new_user)
+    new_user = User(name=request.name, email=request.email, password=hashed_password) #creating new user here 
+    db.add(new_user) #adding new user to the db. 
     db.commit()
     return{"message": "User registered successfully"}
 
@@ -59,5 +59,5 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     return user
 
 @router.get("/me")
-def me(user_verify : User = Depends(get_current_user)):
+def me(user_verify : User = Depends(get_current_user)): 
     return{"name" : user_verify.name, "email" : user_verify.email} #DOT . is how to reach object to pull specific info from it.
