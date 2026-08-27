@@ -42,6 +42,7 @@ def search_history(user_verify: User = Depends(get_current_user)):
 @router.get("/search/{id}")
 def get_search(id: int, user_verify: User = Depends(get_current_user)):
     db = SessionLocal()
-    search_result = db.query(Search).filter(Search.id == id, Search.user_id == user_verify.id).all()
+    search_result = db.query(Search).filter(Search.id == id, Search.user_id == user_verify.id).first()
+    return search_result
 
 #SessionLocal() this is to start a db session. 
