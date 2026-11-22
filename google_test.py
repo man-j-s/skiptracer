@@ -1,6 +1,12 @@
 from backend.config import GOOGLE_SEARCH_ENGINE_ID, GOOGLE_API_KEY
 import requests
 
-requests.get("https://www.googleapis.com/customsearch/v1?key="GOOGLE_API_KEY":"i insert serch engine id here")
+params = {
+    "key": GOOGLE_API_KEY,
+    "cx": GOOGLE_SEARCH_ENGINE_ID,
+    "q": "John Smith Toronto",
+}
 
-response = response.status_code
+response  = requests.get("https://www.googleapis.com/customsearch/v1, params=params")
+
+print(response.status_code)
