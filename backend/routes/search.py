@@ -9,6 +9,7 @@ from backend.routes.auth import get_current_user
 from backend.models.user import User
 from backend.models.search import Search
 from backend.database import SessionLocal
+from backend.services.serper import serper_search
 
 router = APIRouter()
 
@@ -26,6 +27,8 @@ def search(request : SearchDebtor, user_verify : User = Depends(get_current_user
     new_search = Search(user_id = user_verify.id, name = request.name, email = request.email, city = request.city, province = request.province, phone = request.phone, employer = request.employer)
     db.add(new_search) #creating Search row in db. 
     db.commit() #adding to the db.
+    query = f"{request.name} {request.city}"
+    results = serper_search(query)
     return{"search_id" : new_search.id, "name" : request.name,  "city":request.city, "user": user_verify.email }
 
 @router.get("/search/history")
