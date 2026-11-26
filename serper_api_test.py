@@ -2,7 +2,7 @@ from backend.services.serper import serper_search
 
 results = serper_search("Bob Smith Toronto")
 
-for results in results:
+for result in results:
     print(result["title"])
     print(result["link"])
     print()
