@@ -29,7 +29,7 @@ def search(request : SearchDebtor, user_verify : User = Depends(get_current_user
     db.commit() #adding to the db.
     query = f"{request.name} {request.city}"
     results = serper_search(query)
-    return{"search_id" : new_search.id, "name" : request.name,  "city":request.city, "user": user_verify.email }
+    return{"search_id" : new_search.id, "name" : request.name,  "city":request.city, "user": user_verify.email, "results": results }
 
 @router.get("/search/history")
 def search_history(user_verify: User = Depends(get_current_user)):

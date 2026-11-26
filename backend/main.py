@@ -14,7 +14,7 @@ app.include_router(search_router)
 
 # ***************************************************
 # ** IMPORTANT COMMANDS **
-# Activate virtual environment:
+# Activate virtual environment:s
 # venv\Scripts\activate
 
 # Start the server:
