@@ -11,3 +11,5 @@ class Result(Base):
     is_inferred = Column(Boolean)
     confidence = Column(Float)
     found_at = Column(DateTime, default=datetime.utcnow)
+    title = Column(String)
+    snippet = Column(String)
