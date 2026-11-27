@@ -10,6 +10,7 @@ from backend.models.user import User
 from backend.models.search import Search
 from backend.database import SessionLocal
 from backend.services.serper import serper_search
+from backend.models.result import Result
 
 router = APIRouter()
 
