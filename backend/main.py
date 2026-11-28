@@ -6,11 +6,13 @@ from backend.models.result import Result #shows the search results
 from backend.models.email import Email
 from backend.routes.auth import router as auth_router
 from backend.routes.search import router as search_router #as is used to name
+from backend.routes.results import router as results_router
 
 app = FastAPI()
 Base.metadata.create_all(bind = engine)
 app.include_router(auth_router) #include_router can only accept 1 router at a time & not a list
 app.include_router(search_router)
+app.include_router(results_router)
 
 # ***************************************************
 # ** IMPORTANT COMMANDS **
